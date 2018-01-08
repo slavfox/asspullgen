@@ -398,8 +398,6 @@ function saved_asspull() {
     }
     var hash = "W" + window.location.hash.substr(1);
     if (hash.length % 4 != 0) {hash += '='.repeat(4 - (hash.length % 4));}
-    console.log(hash);
-    console.log(atob(hash));
     var saved = JSON.parse(atob(hash));
     if (saved.shift() == 1){
         var items_singular_ = crazy_items_s;
@@ -568,8 +566,6 @@ function wrapText(context, text, x, y, maxWidth, lineHeight) {
     }
     lines.push(line.trim());
     height += lineHeight;
-    console.log(lines);
-    console.log(height);
     for (var i=0; i < lines.length; i++) {
         context.fillText(lines[i], x, ((y - (height/2)) + (lineHeight * (i+1))));
     }
