@@ -579,7 +579,10 @@ function draw_asspull(sentence, hash){
     ctx.fillStyle = "#131516";
     ctx.rect(0, 0, 600, 600);
     ctx.fill();
+    ctx.strokeStyle = "#f2f3f4";
     ctx.fillStyle = "#f2f3f4";
+    ctx.rect(0, 0, 600, 600);
+    ctx.stroke();
     ctx.textAlign = "center";
     wrapText(ctx, sentence, canvas.width / 2, canvas.height / 2, 600, 60); 
     ctx.font = "small-caps 36px Serif";
