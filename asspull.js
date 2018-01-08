@@ -191,7 +191,6 @@ function asspullify(sentence){
         var item = get_random(items_singular);
         if (Math.random() < 0.1){
             item = get_random(people) + "'s " + item;
-            item = item.replace(new RegExp("^the "), "");
             if (sentence.indexOf("the {item}") !== -1) {
                 sentence = sentence.replace("the {item}", item);
             } else{
