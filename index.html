@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Asspull Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <script src="asspull.js"></script>
+    <style media="screen">
+      html {
+        height: 100%;
+      }
+      body {
+        box-sizing: border-box;
+        min-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #eee;
+        background-color: #000;
+        font-family: 'Space Mono', monospace;
+        padding: 1.3em;
+        margin: 0;
+        font-size: 14px;
+        flex-direction: column;
+      }
+
+      .contributors {
+        color: #fff;
+        font-size: 20px;
+      }
+
+      .red {
+        color: #d44;
+      }
+
+      .asspull {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        text-align: center;
+      }
+
+      .retry {
+        width: 100%;
+        text-align: center;
+        height: em;
+        margin-bottom: 1.7em;
+      }
+
+      @media (max-width: 720px) {
+        .job-title {
+          font-size: 4em;
+        }
+      }
+
+      @media (min-width: 721px) {
+        .asspull {
+          font-size: 5em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="asspull" class="asspull">test</div>
+    <button class="retry" onclick="asspull();">Generate new asspull</button>
+
+
+    <a href="https://github.com/slavfox/asspullgen" class="contributors">
+        Made by Slavfox for AOV
+    </a>
+    <script>
+        asspull();
+    </script>
+  </body>
+</html>
