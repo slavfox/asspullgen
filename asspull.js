@@ -41,6 +41,13 @@ var people = [
     'Inferno Cop',
     'a vampire',
     'a criminal',
+    'a clone',
+    'a ghost',
+    'a lesbian',
+    'a fag',
+    'a newfriend',
+    'an autist',
+    'a drunk'
 ]
 
 var items_singular = [
@@ -75,7 +82,7 @@ var items_singular = [
     'theory',
     'elaborate pulley system',
     'time of death',
-    'a freezer',
+    'freezer',
     'sheer force of will',
     'bullet hole',
     'testimony',
@@ -100,7 +107,8 @@ var verbs = [
     'defend',
     'marry',
     'stab',
-    'shoot'
+    'shoot',
+    'multiclient'
 ]
 
 var items_plural = [
@@ -138,7 +146,8 @@ var locations = [
     'discord',
     'area 1',
     'arcade',
-    'google doc'
+    'google doc',
+    'freezer'
 ]
 
 var asspulls = [
@@ -176,10 +185,14 @@ var asspulls = [
     '{person} couldn\'t have been the one to {verb} {person}',
     '{person} couldn\'t have been the one to {verb} the {item}',
     'the victim was killed with {person}\'s {item}',
-    '{item} crashed the server',
     'the {item} crashed the server',
-    'the {item} was used by {person}'
-
+    'the {item} was used by {person}',
+    'the {item} was used to throw off the time of death',
+    '{person} is a clone',
+    '{person} was framed by {person}',
+    'the defendant was framed by {person}',
+    'the {item} is fake',
+    'the {item} has no relevance to the case',
 ]
 
 function get_random(arr){
