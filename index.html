@@ -19,7 +19,8 @@
         background-color: #000;
         font-family: 'Space Mono', monospace;
         padding: 1.3em;
-        margin: 0;
+        margin: 0 auto;
+        width: 768px;
         font-size: 14px;
         flex-direction: column;
       }
@@ -44,7 +45,7 @@
         width: 100%;
         text-align: center;
         height: em;
-        margin-bottom: 1.7em;
+        margin: 1.7em;
       }
 
       @media (max-width: 720px) {
@@ -65,7 +66,7 @@
     <div id="asspull" class="asspull">test</div>
     <div class="url">Asspull URL: <a id="url" href=""></a></div>
     <button class="retry" onclick="asspull();">Generate new asspull</button>
-    <input type="checkbox"  id="crazymode">Crazy mode</input>
+    <input type="checkbox"  id="crazymode" style="color:#5599ff">Crazy mode</input>
 
 
     <a href="https://github.com/slavfox/asspullgen" class="contributors">
