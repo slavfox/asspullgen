@@ -589,6 +589,8 @@ function draw_asspull(sentence, hash){
     ctx.fillStyle = "#f2f3f4";
     ctx.font = "12px Sans";
     ctx.fillText(hash, canvas.width/2, canvas.height-16);
+    var asspullimg = document.getElementById("asspull_img");
+    asspullimg.src = (Canvas2Image.convertToPNG(canvas, 600, 600)).src;
     
 }
 

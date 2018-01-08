@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Asspull Generator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <script src="canvas2image.js"></script>
     <script src="asspull.js"></script>
     <style media="screen">
       html {
@@ -27,11 +28,12 @@
       }
 
       .credits {
-        color:#f89406;
         text-decoration: none;
-        font-size: 18px;
+        font-size: 12px;
         margin: 2em;
       }
+      
+      .credits a {color:#f89406;}
       
       .link {
         background-color:#f2f3f4;
@@ -46,6 +48,10 @@
       }
       
       .asspull {
+        display: none;
+      }
+      
+      #asspull_img {
         display: flex;
         align-items: center;
         text-align: center;
@@ -64,6 +70,8 @@
   </head>
   <body>
     <canvas id="asspull" class="asspull" width="600" height="600" onclick="asspull();"></canvas>
+    <img id="asspull_img" onclick="asspull();" src=""></img>
+    
     
     <label class="crazymode"><input type="checkbox"  id="crazymode"/>Crazy mode</label>
     
@@ -74,9 +82,12 @@
 
     <hr style="width:100%"/>
     
-    <a href="https://github.com/slavfox/asspullgen" class="credits">
-        Made by Slavfox for AOV
-    </a>
+    <p class="credits">
+        Made by 
+        <a href="https://github.com/slavfox/asspullgen">Slavfox</a>
+        for AOV using 
+        <a href="https://github.com/hongru/canvas2image">canvas2image by hongru</a>
+    </p>
     <script>
         asspull();
     </script>
