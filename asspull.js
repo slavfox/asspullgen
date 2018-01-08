@@ -176,7 +176,7 @@ var asspulls = [
     '{person} couldn\'t have been the one to {verb} {person}',
     '{person} couldn\'t have been the one to {verb} the {item}',
     'the victim was killed with {person}\'s {item}',
-    '{person}\'s {item} crashed the server',
+    '{item} crashed the server',
     'the {item} crashed the server',
     'the {item} was used by {person}'
 
