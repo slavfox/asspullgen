@@ -305,8 +305,9 @@ var asspulls_crazy = [
     '{person} is multiclienting'
 ]
 
-function get_random(arr){
-    return arr[Math.floor(Math.random()*arr.length)];
+function get_random_index(arr){
+    var r = Math.floor(Math.random()*arr.length);
+    return r;
 }
 
 function crazify_people(){
@@ -391,9 +392,10 @@ function crazify_asspulls(){
 
 var crazy_asspulls = crazify_asspulls();
 
-
-function asspull() {
-    if (document.getElementById("crazymode").checked){
+function saved_asspull() {
+    var saved = JSON.parse(atob(window.location.hash.substr(1)));
+    window.location.hash = "";
+    if (saved.shift() == 1){
         var items_singular_ = crazy_items_s;
         var items_plural_ = crazy_items_p;
         var people_ = crazy_people;
@@ -410,12 +412,14 @@ function asspull() {
         var facts_ = facts;
         var asspulls_ = asspulls;
     }
-    var sentence = get_random(asspulls_);
+    var sentence = saved.shift();
+    sentence = asspulls_[sentence];
     for(var i=0; i<3; i++){
         while (sentence.indexOf("{item}") !== -1) {
-            var item = get_random(items_singular_);
-            if (Math.random() < 0.1){
-                item = get_random(people_) + "'s " + item;
+            var item = saved.shift(); 
+            if (saved.shift() < 0.1){
+                var item2 = saved.shift();
+                item = people_[item2] + "'s " + item;
                 if (sentence.indexOf("the {item}") !== -1) {
                     sentence = sentence.replace("the {item}", item);
                 } else{
@@ -426,26 +430,125 @@ function asspull() {
             }
         }
         while (sentence.indexOf("{items}") !== -1) {
-            var items_p = get_random(items_plural_);
+            var items_p = saved.shift();
+            items_p = items_plural_[items_p];
             sentence = sentence.replace("{items}", items_p);
         }
         while (sentence.indexOf("{person}") !== -1) {
-            var person = get_random(people_);
+            var person = saved.shift();
+            person = people_[person];
             sentence = sentence.replace("{person}", person);
         }
         while (sentence.indexOf("{fact}") !== -1) {
-            var fact = get_random(facts);
+            var fact = saved.shift();
+            fact = facts[fact];
             sentence = sentence.replace("{fact}", fact);
         }
         while (sentence.indexOf("{location}") !== -1) {
-            var location = get_random(locations_);
+            var location = saved.shift();
+            location = locations_[location];
             sentence = sentence.replace("{location}", location);
         }
         while (sentence.indexOf("{verb}") !== -1) {
-            var verb = get_random(verbs_);
+            var verb = saved.shift();
+            verb = verbs_[verb];
+            sentence = sentence.replace("{verb}", verb);
+        }
+    }
+    sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1) + "!";
+    if (document.getElementById("asspull").innerHTML == sentence) {
+        random_asspull();
+    }
+    else {
+        document.getElementById("asspull").innerHTML = sentence;
+        document.getElementById("url").href = "#" + btoa(JSON.stringify(url));
+        document.getElementById("url").innerHTML = document.getElementById("url").href;
+    }    
+}
+
+function random_asspull(){
+    if (document.getElementById("crazymode").checked){
+        var items_singular_ = crazy_items_s;
+        var items_plural_ = crazy_items_p;
+        var people_ = crazy_people;
+        var locations_ = crazy_locations;
+        var verbs_ = crazy_verbs;
+        var facts_ = facts;
+        var asspulls_ = crazy_asspulls;
+        var url = [1]
+    } else {
+        var items_singular_ = items_singular;
+        var items_plural_ = items_plural;
+        var people_ = people;
+        var locations_ = locations;
+        var verbs_ = verbs;
+        var facts_ = facts;
+        var asspulls_ = asspulls;
+        var url = [0];
+    }
+    var sentence = get_random_index(asspulls_);
+    url.push(sentence);
+    sentence = asspulls_[sentence];
+    for(var i=0; i<3; i++){
+        while (sentence.indexOf("{item}") !== -1) {
+            var item = get_random_index(items_singular_);
+            url.push(item); item = items_singular_[item];
+            if (Math.random() < 0.1){
+                url.push(1);
+                var item2 = get_random_index(people_) 
+                url.push(item2);
+                item = people_[item2] + "'s " + item;
+                if (sentence.indexOf("the {item}") !== -1) {
+                    sentence = sentence.replace("the {item}", item);
+                } else{
+                    sentence = sentence.replace("{item}", item);
+                }
+            } else {
+                url.push(0);
+                sentence = sentence.replace("{item}", item);
+            }
+        }
+        while (sentence.indexOf("{items}") !== -1) {
+            var items_p = get_random_index(items_plural_);
+            url.push(items_p);
+            items_p = items_plural_[items_p];
+            sentence = sentence.replace("{items}", items_p);
+        }
+        while (sentence.indexOf("{person}") !== -1) {
+            var person = get_random_index(people_);
+            url.push(person);
+            person = people_[person];
+            sentence = sentence.replace("{person}", person);
+        }
+        while (sentence.indexOf("{fact}") !== -1) {
+            var fact = get_random_index(facts);
+            url.push(fact);
+            fact = facts[fact];
+            sentence = sentence.replace("{fact}", fact);
+        }
+        while (sentence.indexOf("{location}") !== -1) {
+            var location = get_random_index(locations_);
+            url.push(location);
+            location = locations_[location];
+            sentence = sentence.replace("{location}", location);
+        }
+        while (sentence.indexOf("{verb}") !== -1) {
+            var verb = get_random_index(verbs_);
+            url.push(verb);
+            verb = verbs_[verb];
             sentence = sentence.replace("{verb}", verb);
         }
     }
     sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1) + "!";
     document.getElementById("asspull").innerHTML = sentence;
+    document.getElementById("url").href = "#" + btoa(JSON.stringify(url));
+    document.getElementById("url").innerHTML = document.getElementById("url").href;
+}
+
+function asspull() {
+    if (window.location.hash.length > 1) {
+        saved_asspull();
+    } else {
+        random_asspull();
+    }
 }
