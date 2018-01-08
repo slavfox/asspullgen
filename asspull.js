@@ -66,6 +66,8 @@ var people_crazy = [
 
 var items_singular = [
     'murder weapon',
+    'autopsy report',
+    'updated autopsy report',
     'blood',
     'corpse',
     'camera',
@@ -261,7 +263,9 @@ var asspulls = [
     '{person} was being blackmailed',
     '{person} was being blackmailed by {person}',
     'there was never any {item}',
-    'the existence of the {item} contradicts the facts'
+    'the existence of the {item} contradicts the facts',
+    'we just got the {item}',
+    '{person} found the {item}'
 ]
 
 var asspulls_crazy = [
