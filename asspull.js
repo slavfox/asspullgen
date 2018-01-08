@@ -1,5 +1,6 @@
 var people = [
     'the judge',
+    'the suspect',
     'the witness',
     'a witness',
     'the detective',
@@ -61,7 +62,6 @@ var people_crazy = [
     'an alien',
     'a wizard',
     'a witch',
-    ''
 ]
 
 var items_singular = [
@@ -93,13 +93,11 @@ var items_singular = [
     'shell',
     'magazine',
     'clip',
-    'theory',
     'elaborate pulley system',
-    'time of death',
+    'pulley',
     'freezer',
     'bullet hole',
-    'testimony',
-    'cross examination',
+    'contradiction'
 ]
 
 var items_crazy = [
@@ -179,6 +177,20 @@ var locations_crazy = [
     'google doc',
 ]
 
+var facts = [
+    'time of death',
+    'location of the crime',
+    'murder weapon',
+    'motive',
+    'timeframe',
+    'victim',
+    'killer',
+    'number of shots',
+    'weapon\'s owner',
+    'number of witnesses',
+    'owner of the prints'
+]
+
 var asspulls = [
     'the {item} is actually the {item}',
     'the {item} was originally inside the {location}',
@@ -199,9 +211,13 @@ var asspulls = [
     '{person} has actually been {person} all along',
     '{person} hid the real {item}',
     'the {item} is a fake',
+    'the {item} was moved',
     'the {item} was moved using a {item}',
     'the {item} was moved using {items}',
     'the {item} was moved by {person}',
+    'the body was moved using a {item}',
+    'the body was moved using {items}',
+    'the body was moved by {person}',
     'the {items} actually belong to {person}',
     'the {item} actually belongs to {person}',
     'the {item} was made by {person}',
@@ -223,7 +239,24 @@ var asspulls = [
     'the {item} is fake',
     'the {item} has no relevance to the case',
     'I am actually {person}',
-    'the {item} belongs to me'
+    'the {item} belongs to me',
+    'we were mistaken about the {fact}',
+    'we were wrong about the {fact}',
+    '{person} used the {item} to fake the {fact}',
+    '{person} used the {item} to mislead us about the {fact}',
+    'we still don\'t know the real {fact}',
+    'the {item} was used to mislead us about the {fact}',
+    'the crime happened years ago',
+    'the crime actually happened in the {location}',
+    'the {item} actually belongs to me',
+    'we can\'t end this case until we hear another testimony from {person}',
+    'there was actually no contradiction in {person}\'s testimony',
+    '{person} is bluffing',
+    '{person} lied about the {item}',
+    '{person} lied about the {fact}',
+    '{person} was being blackmailed',
+    '{person} was being blackmailed by {person}',
+    'there was never any {item}'
 ]
 
 var asspulls_crazy = [
@@ -326,6 +359,7 @@ function asspull() {
         var people_ = crazy_people;
         var locations_ = crazy_locations;
         var verbs_ = crazy_verbs;
+        var facts_ = facts;
         var asspulls_ = crazy_asspulls;
     } else {
         var items_singular_ = items_singular;
@@ -333,6 +367,7 @@ function asspull() {
         var people_ = people;
         var locations_ = locations;
         var verbs_ = verbs;
+        var facts_ = facts;
         var asspulls_ = asspulls;
     }
     var sentence = get_random(asspulls_);
@@ -356,6 +391,10 @@ function asspull() {
     while (sentence.indexOf("{person}") !== -1) {
         var person = get_random(people_);
         sentence = sentence.replace("{person}", person);
+    }
+    while (sentence.indexOf("{fact}") !== -1) {
+        var fact = get_random(facts);
+        sentence = sentence.replace("{fact}", fact);
     }
     while (sentence.indexOf("{location}") !== -1) {
         var location = get_random(locations_);
