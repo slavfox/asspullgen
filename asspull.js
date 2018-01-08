@@ -1,6 +1,8 @@
 var people = [
     'Grossberg',
     'Gant',
+    'Phoenix',
+    'Apollo',
     'the judge',
     'the suspect',
     'the witness',
@@ -64,6 +66,7 @@ var people_crazy = [
     'an alien',
     'a wizard',
     'a witch',
+    'the Payne Train'
 ]
 
 var items_singular = [
@@ -100,7 +103,10 @@ var items_singular = [
     'pulley',
     'freezer',
     'bullet hole',
-    'contradiction'
+    'contradiction',
+    'car',
+    'water',
+    'recording',
 ]
 
 var items_crazy = [
@@ -171,7 +177,14 @@ var locations = [
     'church',
     'school',
     'freezer',
-    'case'
+    'case',
+    'house',
+    'alley',
+    'university',
+    'Pentagon',
+    'shelter',
+    'shop',
+    'office'
 ]
 
 var locations_crazy = [
@@ -274,7 +287,11 @@ var asspulls = [
     'we just got the {item}',
     '{person} found the {item}',
     '[just fucking rest your case tbh]',
-    ''
+    'the {item} proves {person}\'s guilt beyond a shadow of a doubt',
+    'the {item} proves that {person} is lying',
+    '{person} is part of the mafia',
+    '{person} was at the scene of the crime',
+    '{person} was inside the {location}'
 ]
 
 var asspulls_crazy = [
