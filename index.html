@@ -15,61 +15,66 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #eee;
-        background-color: #000;
+        color: #f2f3f4;
+        background-color: #373d3f;
         font-family: 'Space Mono', monospace;
         padding: 1.3em;
         margin: 0 auto;
         width: 768px;
         font-size: 14px;
         flex-direction: column;
+        text-align: center;
       }
 
-      .contributors {
-        color: #fff;
-        font-size: 20px;
+      .credits {
+        color:#f89406;
+        text-decoration: none;
+        font-size: 18px;
+        margin: 2em;
       }
-
-      .red {
-        color: #d44;
+      
+      .link {
+        background-color:#f2f3f4;
+        padding:10px;
       }
-
+      
+      #url {
+        text-decoration: none;
+        font-weight: bold;
+        font-size:16px;
+        color:#131516;
+      }
+      
       .asspull {
-        flex-grow: 1;
         display: flex;
         align-items: center;
         text-align: center;
+        background-color: #131516;
+        margin: 3em;
+        border: 1px solid #f2f3f4;
+        cursor: pointer;
       }
 
-      .retry {
+      .crazymode {
         width: 100%;
         text-align: center;
-        height: em;
         margin: 1.7em;
-      }
-
-      @media (max-width: 720px) {
-        .job-title {
-          font-size: 3em;
-        }
-      }
-
-      @media (min-width: 721px) {
-        .asspull {
-          font-size: 4em;
-        }
       }
     </style>
   </head>
   <body>
-    <h1>AOV Asspull Generator</h1>
-    <div id="asspull" class="asspull">test</div>
-    <div class="url">Asspull URL: <a id="url" href="" style="color:#5599ff"></a></div>
-    <button class="retry" onclick="asspull();">Generate new asspull</button>
-    <input type="checkbox"  id="crazymode">Crazy mode</input>
+    <canvas id="asspull" class="asspull" width="600" height="600" onclick="asspull();"></canvas>
+    
+    <label class="crazymode"><input type="checkbox"  id="crazymode"/>Crazy mode</label>
+    
+    <div class="url">
+        <p>Share this asspull:</p>
+        <p class="link"><a id="url" href=""></a></p>
+    </div>
 
-
-    <a href="https://github.com/slavfox/asspullgen" class="contributors">
+    <hr style="width:100%"/>
+    
+    <a href="https://github.com/slavfox/asspullgen" class="credits">
         Made by Slavfox for AOV
     </a>
     <script>

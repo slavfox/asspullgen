@@ -393,8 +393,14 @@ function crazify_asspulls(){
 var crazy_asspulls = crazify_asspulls();
 
 function saved_asspull() {
-    var saved = JSON.parse(atob(window.location.hash.substr(1)));
-    window.location.hash = "";
+    if (document.getElementById("url").href == window.location.hash) {
+       return random_asspull();
+    }
+    var hash = "W" + window.location.hash.substr(1);
+    if (hash.length % 4 != 0) {hash += '='.repeat(4 - (hash.length % 4));}
+    console.log(hash);
+    console.log(atob(hash));
+    var saved = JSON.parse(atob(hash));
     if (saved.shift() == 1){
         var items_singular_ = crazy_items_s;
         var items_plural_ = crazy_items_p;
@@ -456,14 +462,9 @@ function saved_asspull() {
         }
     }
     sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1) + "!";
-    if (document.getElementById("asspull").innerHTML == sentence) {
-        random_asspull();
-    }
-    else {
-        document.getElementById("asspull").innerHTML = sentence;
-        document.getElementById("url").href = "#" + btoa(JSON.stringify(url));
-        document.getElementById("url").innerHTML = document.getElementById("url").href;
-    }    
+    draw_asspull(sentence, window.location.hash.substr(1));
+    document.getElementById("url").href = window.location.hash;
+    document.getElementById("url").innerHTML = document.getElementById("url").href;
 }
 
 function random_asspull(){
@@ -540,14 +541,65 @@ function random_asspull(){
         }
     }
     sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1) + "!";
-    document.getElementById("asspull").innerHTML = sentence;
-    document.getElementById("url").href = "#" + btoa(JSON.stringify(url));
+    url = btoa(JSON.stringify(url)).replace(/=+$/, "").substr(1);
+    draw_asspull(sentence, url);
+    document.getElementById("url").href = "#" + url;
     document.getElementById("url").innerHTML = document.getElementById("url").href;
+}
+
+function wrapText(context, text, x, y, maxWidth, lineHeight) {
+    var words = text.split(' ');
+    var line = '';
+    var lines = [];
+    var height = 0;
+
+    for(var n = 0; n < words.length; n++) {
+      var testLine = line + words[n] + ' ';
+      var metrics = context.measureText(testLine);
+      var testWidth = metrics.width;
+      if (testWidth > maxWidth && n > 0) {
+        lines.push(line.trim());
+        height += lineHeight;
+        line = words[n] + ' ';
+      }
+      else {
+        line = testLine;
+      }
+    }
+    lines.push(line.trim());
+    height += lineHeight;
+    console.log(lines);
+    console.log(height);
+    for (var i=0; i < lines.length; i++) {
+        context.fillText(lines[i], x, ((y - (height/2)) + (lineHeight * (i+1))));
+    }
+}
+
+function draw_asspull(sentence, hash){
+    var canvas = document.getElementById("asspull");
+    var ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.font = "60px Sans";
+    ctx.fillStyle = "#131516";
+    ctx.rect(0, 0, 600, 600);
+    ctx.fill();
+    ctx.fillStyle = "#f2f3f4";
+    ctx.textAlign = "center";
+    wrapText(ctx, sentence, canvas.width / 2, canvas.height / 2, 600, 60); 
+    ctx.font = "small-caps 36px Serif";
+    ctx.fillText("AOV Asspull Generator", canvas.width/2, 50);
+    ctx.font = "18px Sans";
+    ctx.fillText("slavfox.github.io/asspullgen", canvas.width/2, 80);
+    ctx.fillStyle = "#f2f3f4";
+    ctx.font = "12px Sans";
+    ctx.fillText(hash, canvas.width/2, canvas.height-16);
+    
 }
 
 function asspull() {
     if (window.location.hash.length > 1) {
         saved_asspull();
+        window.location.hash = "";
     } else {
         random_asspull();
     }
