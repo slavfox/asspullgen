@@ -1,4 +1,6 @@
 var people = [
+    'Grossberg',
+    'Gant',
     'the judge',
     'the suspect',
     'the witness',
@@ -168,7 +170,8 @@ var locations = [
     'prison',
     'church',
     'school',
-    'freezer'
+    'freezer',
+    'case'
 ]
 
 var locations_crazy = [
@@ -176,6 +179,7 @@ var locations_crazy = [
     'area 1',
     'arcade',
     'google doc',
+    'OOC'
 ]
 
 var facts = [
@@ -194,7 +198,8 @@ var facts = [
     'extraterritorial rights',
     'blackmail',
     'cause of death',
-    '{person}\'s identity'
+    '{person}\'s identity',
+    'case'
 ]
 
 var asspulls = [
@@ -267,7 +272,9 @@ var asspulls = [
     'there was never any {item}',
     'the existence of the {item} contradicts the facts',
     'we just got the {item}',
-    '{person} found the {item}'
+    '{person} found the {item}',
+    '[just fucking rest your case tbh]',
+    ''
 ]
 
 var asspulls_crazy = [
