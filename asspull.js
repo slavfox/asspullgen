@@ -86,7 +86,6 @@ var items_singular = [
     'contradiction',
     'testimony',
     'computer',
-    'emote',
     'banknote',
     'card',
     'coin',
@@ -256,7 +255,8 @@ var asspulls = [
     '{person} lied about the {fact}',
     '{person} was being blackmailed',
     '{person} was being blackmailed by {person}',
-    'there was never any {item}'
+    'there was never any {item}',
+    'the existence of the {item} contradicts the facts'
 ]
 
 var asspulls_crazy = [
