@@ -187,7 +187,12 @@ var facts = [
     'number of shots',
     'weapon\'s owner',
     'number of witnesses',
-    'owner of the prints'
+    'owner of the prints',
+    'ballistic markings',
+    'extraterritorial rights',
+    'blackmail',
+    'cause of death',
+    '{person}\'s identity'
 ]
 
 var asspulls = [
@@ -371,38 +376,40 @@ function asspull() {
         var asspulls_ = asspulls;
     }
     var sentence = get_random(asspulls_);
-    while (sentence.indexOf("{item}") !== -1) {
-        var item = get_random(items_singular_);
-        if (Math.random() < 0.1){
-            item = get_random(people_) + "'s " + item;
-            if (sentence.indexOf("the {item}") !== -1) {
-                sentence = sentence.replace("the {item}", item);
-            } else{
+    for(var i=0; i<3; i++){
+        while (sentence.indexOf("{item}") !== -1) {
+            var item = get_random(items_singular_);
+            if (Math.random() < 0.1){
+                item = get_random(people_) + "'s " + item;
+                if (sentence.indexOf("the {item}") !== -1) {
+                    sentence = sentence.replace("the {item}", item);
+                } else{
+                    sentence = sentence.replace("{item}", item);
+                }
+            } else {
                 sentence = sentence.replace("{item}", item);
             }
-        } else {
-            sentence = sentence.replace("{item}", item);
         }
-    }
-    while (sentence.indexOf("{items}") !== -1) {
-        var items_p = get_random(items_plural_);
-        sentence = sentence.replace("{items}", items_p);
-    }
-    while (sentence.indexOf("{person}") !== -1) {
-        var person = get_random(people_);
-        sentence = sentence.replace("{person}", person);
-    }
-    while (sentence.indexOf("{fact}") !== -1) {
-        var fact = get_random(facts);
-        sentence = sentence.replace("{fact}", fact);
-    }
-    while (sentence.indexOf("{location}") !== -1) {
-        var location = get_random(locations_);
-        sentence = sentence.replace("{location}", location);
-    }
-    while (sentence.indexOf("{verb}") !== -1) {
-        var verb = get_random(verbs_);
-        sentence = sentence.replace("{verb}", verb);
+        while (sentence.indexOf("{items}") !== -1) {
+            var items_p = get_random(items_plural_);
+            sentence = sentence.replace("{items}", items_p);
+        }
+        while (sentence.indexOf("{person}") !== -1) {
+            var person = get_random(people_);
+            sentence = sentence.replace("{person}", person);
+        }
+        while (sentence.indexOf("{fact}") !== -1) {
+            var fact = get_random(facts);
+            sentence = sentence.replace("{fact}", fact);
+        }
+        while (sentence.indexOf("{location}") !== -1) {
+            var location = get_random(locations_);
+            sentence = sentence.replace("{location}", location);
+        }
+        while (sentence.indexOf("{verb}") !== -1) {
+            var verb = get_random(verbs_);
+            sentence = sentence.replace("{verb}", verb);
+        }
     }
     sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1) + "!";
     document.getElementById("asspull").innerHTML = sentence;
