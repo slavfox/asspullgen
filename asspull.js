@@ -270,7 +270,7 @@ var asspulls = [
     'we were wrong about the {fact}',
     '{person} used the {item} to fake the {fact}',
     '{person} used the {item} to {verb} the {item}',
-    '{person} used the {item} to {verb} the {person}',
+    '{person} used the {item} to {verb} {person}',
     '{person} used the {item} to mislead us about the {fact}',
     'we still don\'t know the real {fact}',
     'the {item} was used to mislead us about the {fact}',
